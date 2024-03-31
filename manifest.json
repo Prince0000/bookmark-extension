@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Bookmark Extension",
+    "version": "1.0",
+    "description": "An extension to log in and add bookmarks.",
+    "permissions": ["tabs", "https://loud-liquid-production.up.railway.app/*"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon16.png"
+      }
+    },
+    "icons": {
+      "16": "icon16.png"
+    },
+    "declarative_content": [
+      {
+        "conditions": [
+          {
+            "url_matches": "<all_urls>"
+          }
+        ],
+        "js": ["content.js"]
+      }
+    ]
+  }

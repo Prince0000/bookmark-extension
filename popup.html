@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login and Bookmark</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 500px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="url"],
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .display-hiden {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function logout() {
+            if (localStorage.getItem('token')) {
+                localStorage.removeItem('token');
+            }
+            document.querySelector('.login-container').style.display = 'block';
+            document.querySelector('.bookmark-container').style.display = 'none';
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jwt-decode/3.1.2/js/jwt-decode.min.js"></script>
+    <script src="popup.js"></script>
+</head>
+
+<body>
+    <a href="https://bookmark-frontend-orpin.vercel.app/login" target="_blank">View All Bookmark</a>
+    <div class="container login-container" style="display: block;">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <button id="loginBtn">Login</button><br><br>
+
+        <a href="https://bookmark-frontend-orpin.vercel.app/signup" target="_blank">If you don't have an account, click
+            here</a>
+
+    </div>
+
+    <div class="container bookmark-container" style="display: none;">
+        <h1>Add Bookmark</h1>
+        <input type="hidden" id="userId" placeholder="ID" readonly required><br>
+        <input type="text" id="title" placeholder="Title" required><br>
+        <input type="text" id="note" placeholder="Note" required><br>
+        <select id="collection" required>
+            <option>Select Collection...</option>
+        </select><br>
+        <input type="text" id="tags" placeholder="Enter Tags with ',' Seprated " required><br>
+        <input type="url" id="url" placeholder="URL" required><br>
+        <button id="bookmarkBtn">Add Bookmark</button>
+        <button id="logout" onclick="logout()" style="background-color: red;">Logout</button>
+
+    </div>
+</body>
+
+</html>
